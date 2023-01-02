@@ -35,8 +35,8 @@ public class BookRepositoryTest {
 
         bookRepository.save(book);
     } //트랜잭션 종료 돈 경우 어떻게 진행됬는지 ?
-    // 1. 데이터 준비 + 책 등록 , 데이터 준비 + 책 목록보기 (부분) (참)
-    // 2. 데이터 준비 + 책 등록 - 데이터 준비 + 책 목록보기 (전체) (거짓)
+    // 1. [ 데이터 준비 + 책 등록 ] , [ 데이터 준비 + 책 목록보기 ] (부분) (참)
+    // 2. [ 데이터 준비 + 책 등록 - 데이터 준비 + 책 목록보기 ] (전체) (거짓)
 
 
     // 1. 책 등록
@@ -87,11 +87,6 @@ public class BookRepositoryTest {
        //given
        String title = "junit5";
        String author = "wlgus";
-       Book book = Book.builder()
-               .title(title)
-               .author(author)
-               .build();
-       bookRepository.save(book);
 
        //when
         Book bookPs = bookRepository.findById(1L).get();
@@ -144,6 +139,5 @@ public class BookRepositoryTest {
         // then
         assertEquals(title, bookPs.getTitle());
         assertEquals(author, bookPs.getAuthor());
-
     }
 }
