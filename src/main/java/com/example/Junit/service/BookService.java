@@ -3,8 +3,9 @@ package com.example.Junit.service;
 import com.example.Junit.domain.Book;
 import com.example.Junit.domain.BookRepository;
 import com.example.Junit.util.MailSender;
-import com.example.Junit.web.dto.BookResDto;
-import com.example.Junit.web.dto.BookSaveReqDto;
+import com.example.Junit.web.dto.response.BookListResDto;
+import com.example.Junit.web.dto.response.BookResDto;
+import com.example.Junit.web.dto.request.BookSaveReqDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,10 +33,13 @@ public class BookService {
     }
 
     // 2. 책목록보기
-    public List<BookResDto> 책목록(){
-        return bookRepository.findAll().stream() //stream: 데이터를 담음, map: 다른 타입으로 변경 후 리턴 가능(stream 을 복제)
+    public BookListResDto 책목록(){
+        List<BookResDto> bookResDtoList = bookRepository.findAll().stream() //stream: 데이터를 담음, map: 다른 타입으로 변경 후 리턴 가능(stream 을 복제)
                 .map(Book::toDto)
                 .collect(Collectors.toList()); // 리스트로 변환
+
+        BookListResDto bookListResDto = BookListResDto.builder().bookResDtoList(bookResDtoList).build();
+        return bookListResDto;
     }
 
     // 3. 책 한건 보기

@@ -1,4 +1,4 @@
-package com.example.Junit.web.dto;
+package com.example.Junit.web.dto.response;
 
 import com.example.Junit.domain.Book;
 import lombok.Builder;

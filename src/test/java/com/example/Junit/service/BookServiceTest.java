@@ -3,10 +3,9 @@ package com.example.Junit.service;
 import com.example.Junit.domain.Book;
 import com.example.Junit.domain.BookRepository;
 import com.example.Junit.util.MailSender;
-import com.example.Junit.web.dto.BookResDto;
-import com.example.Junit.web.dto.BookSaveReqDto;
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
+import com.example.Junit.web.dto.response.BookListResDto;
+import com.example.Junit.web.dto.response.BookResDto;
+import com.example.Junit.web.dto.request.BookSaveReqDto;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -14,7 +13,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -69,13 +67,13 @@ public class BookServiceTest {
         when(bookRepository.findAll()).thenReturn(books);
 
         //when
-        List<BookResDto> bookRespDto = bookService.책목록();
+        BookListResDto bookRespDto = bookService.책목록();
 
         //then
-        assertThat(bookRespDto.get(0).getTitle()).isEqualTo("junit");
-        assertThat(bookRespDto.get(0).getAuthor()).isEqualTo("seo");
-        assertThat(bookRespDto.get(1).getTitle()).isEqualTo("1234");
-        assertThat(bookRespDto.get(1).getAuthor()).isEqualTo("ji");
+        assertThat(bookRespDto.getItems().get(0).getTitle()).isEqualTo("junit");
+        assertThat(bookRespDto.getItems().get(0).getAuthor()).isEqualTo("seo");
+        assertThat(bookRespDto.getItems().get(1).getTitle()).isEqualTo("1234");
+        assertThat(bookRespDto.getItems().get(1).getAuthor()).isEqualTo("ji");
     }
 
     @Test
