@@ -6,7 +6,6 @@ import com.example.Junit.web.dto.response.BookResDto;
 import com.example.Junit.web.dto.request.BookSaveReqDto;
 import com.example.Junit.web.dto.response.CMRespDto;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -54,7 +53,7 @@ public class BookApiController {
     @DeleteMapping("/api/v1/book/{id}")
     public ResponseEntity<?> deleteBook(@PathVariable Long id){
         bookService.책삭제(id);
-        return new ResponseEntity<>(CMRespDto.builder().code(1).msg("글 삭제하기 성공").body(null).build(), HttpStatus.OK);
+        return new ResponseEntity<>(CMRespDto.builder().code(1).msg("글 삭제 하기 성공").body(null).build(), HttpStatus.OK);
     }
 
     @PutMapping("/api/v1/book/{id}")
